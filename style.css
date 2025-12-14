@@ -24,3 +24,21 @@ h1 {
   height: auto;
   display: block;
 }
+
+.item {
+  display: flex;
+  flex-direction: column;
+}
+
+.item img {
+  width: 100%;
+  display: block;
+}
+
+.caption {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #999;
+  letter-spacing: 0.02em;
+}
