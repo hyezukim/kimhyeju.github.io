@@ -34,15 +34,19 @@ body {
 
 /* POPUP BACKGROUND */
 .popup {
-  display: none;
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.85);
   z-index: 1000;
 
+  display: flex;
   justify-content: center;
   align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
 }
+
 
 /* POPUP BOX */
 .popup-content {
