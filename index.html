@@ -14,7 +14,7 @@
     <div class="item">
       <img src="images/project1-1.jpg" onclick="openPopup(1)" alt="">
       <div class="caption">
-        Graduation project<br>
+        Graduation Project<br>
         흔적에서 현상으로<br>
         2023
       </div>
@@ -31,86 +31,55 @@
 
   </div>
 
-  <!-- POPUP BACKGROUND -->
+  <!-- POPUP -->
   <div class="popup" id="popup" onclick="handleBackgroundClick(event)">
-    
-    <!-- POPUP BOX -->
     <div class="popup-content">
-
-      <!-- SCROLL IMAGES -->
-      <div class="project-images" id="project-images">
-     
-
+      <div class="project-images" id="project-images"></div>
     </div>
-
     <span class="close" onclick="closePopup()">×</span>
   </div>
 
- 
   <!-- SCRIPT -->
   <script>
-  const projects = {
-    1: {
-      title: "Graduation Project",
-      info: "흔적에서 현상으로 / 2023",
-      images: 1
-    },
-    2: {
-      title: "Academic Project",
-      info: "Kim Library / 2022",
-      images: 2
-    }
-  };
+    const projects = {
+      1: { images: 2 },
+      2: { images: 3 }
+    };
 
-  function openPopup(projectNum) {
-    const popup = document.getElementById('popup');
-    const info = document.getElementById('project-info');
-    const images = document.getElementById('project-images');
-    const project = projects[projectNum];
+    function openPopup(projectNum) {
+      const popup = document.getElementById('popup');
+      const images = document.getElementById('project-images');
+      const project = projects[projectNum];
 
-    if (!project) {
-      console.error("Project not found:", projectNum);
-      return;
-    }
+      if (!project) return;
 
-    info.innerHTML = `
-      <h1>${project.title}</h1>
-      <p>${project.info}</p>
-    `;
+      images.innerHTML = '';
+      for (let i = 1; i <= project.images; i++) {
+        const img = document.createElement('img');
+        img.src = `images/project${projectNum}-${i}.jpg`;
+        images.appendChild(img);
+      }
 
-    images.innerHTML = '';
-    for (let i = 1; i <= project.images; i++) {
-      const img = document.createElement('img');
-      img.src = `images/project${projectNum}-${i}.jpg`;
-      images.appendChild(img);
+      popup.style.opacity = '1';
+      popup.style.pointerEvents = 'auto';
+      document.body.style.overflow = 'hidden';
     }
 
-    popup.style.opacity = '1';
-    popup.style.pointerEvents = 'auto';
-    document.body.style.overflow = 'hidden';
-    images.scrollTop = 0;
-  }
-
-  function closePopup() {
-    const popup = document.getElementById('popup');
-    popup.style.opacity = '0';
-    popup.style.pointerEvents = 'none';
-    document.body.style.overflow = '';
-  }
-
-  function handleBackgroundClick(e) {
-    if (e.target.id === 'popup') {
-      closePopup();
+    function closePopup() {
+      const popup = document.getElementById('popup');
+      popup.style.opacity = '0';
+      popup.style.pointerEvents = 'none';
+      document.body.style.overflow = '';
     }
-  }
 
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closePopup();
+    function handleBackgroundClick(e) {
+      if (e.target.id === 'popup') closePopup();
     }
-  });
-</script>
 
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closePopup();
+    });
+  </script>
 
 </body>
 </html>
