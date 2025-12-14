@@ -7,9 +7,7 @@
 body {
   margin: 0;
   padding: 40px;
-  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI",
-               Roboto, "Apple SD Gothic Neo", "Noto Sans KR",
-               "Malgun Gothic", Arial, sans-serif;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
   background: #fff;
   color: #000;
 }
@@ -21,94 +19,83 @@ body {
   gap: 40px;
 }
 
-/* ITEM */
-.item {
-  display: flex;
-  flex-direction: column;
-}
-
 .item img {
   width: 100%;
-  display: block;
-  cursor: zoom-in;
+  cursor: pointer;
 }
 
-/* CAPTION */
 .caption {
   margin-top: 10px;
   font-size: 12px;
-  line-height: 1.4;
   color: #999;
-  letter-spacing: 0.03em;
   text-transform: uppercase;
+  line-height: 1.4;
 }
 
-/* LIGHTBOX */
-.lightbox {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.92);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-}
-
-.lightbox:target {
-  display: flex;
-}
-
-/* CLOSE BUTTON */
-.close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 30px;
-  color: #fff;
-  text-decoration: none;
-}
-
-/* POPUP */
+/* POPUP BACKGROUND */
 .popup {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.92);
+  background: rgba(0,0,0,0.85);
   z-index: 1000;
-}
 
-/* 스크롤 영역 */
-.popup-content {
-  width: 100%;
-  height: 100%;
-  padding: 80px 0;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
-/* 팝업 이미지 */
-.popup-content img {
+/* POPUP BOX */
+.popup-content {
+  width: 80%;
+  max-width: 1100px;
+  height: 80%;
+  background: #111;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* FIXED PROJECT INFO */
+.project-info {
+  position: sticky;
+  top: 0;
+  background: #111;
+  padding: 40px 60px;
+  z-index: 2;
+}
+
+.project-info h1 {
+  margin: 0 0 6px 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.project-info p {
+  margin: 0;
+  font-size: 13px;
+  color: #aaa;
+}
+
+/* SCROLL AREA */
+.project-images {
+  padding: 60px 0;
+  overflow-y: auto;
+  height: calc(100% - 120px);
+}
+
+.project-images img {
+  display: block;
   max-width: 85%;
-  margin-bottom: 60px;
+  margin: 0 auto 60px auto;
 }
 
 /* CLOSE */
-.popup .close {
+.close {
   position: fixed;
   top: 20px;
   right: 30px;
-  font-size: 30px;
+  font-size: 28px;
   color: #fff;
   cursor: pointer;
-  z-index: 1001;
 }
