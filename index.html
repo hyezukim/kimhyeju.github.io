@@ -11,81 +11,100 @@
   <!-- GRID -->
   <div class="grid">
 
-    <!-- PROJECT 1 -->
     <div class="item">
-      <img src="images/project1-1.jpg" alt="" onclick="openPopup(1,2)">
+      <img src="images/project1-1.jpg" onclick="openPopup(1)" alt="">
       <div class="caption">
-        Graduation Project<br>
-        흔적에서 현상으로<br>
-        2023
+        2–34<br>
+        F. Kuenstler<br>
+        SRC
       </div>
     </div>
 
-    <!-- PROJECT 2 -->
     <div class="item">
-      <img src="images/project2-1.jpg" alt="" onclick="openPopup(2,3)">
+      <img src="images/project2-1.jpg" onclick="openPopup(2)" alt="">
       <div class="caption">
-        Project<br>
-        KIM Library<br>
-        2022
-      </div>
-    </div>
-
-    <!-- PROJECT 3 -->
-    <div class="item">
-      <img src="images/project3-1.jpg" alt="" onclick="openPopup(3,2)">
-      <div class="caption">
-        Another Project<br>
-        Program
+        Project Name<br>
+        Location<br>
+        2024
       </div>
     </div>
 
   </div>
 
-<!-- POPUP -->
-<div class="popup" id="popup">
-  <span class="close" onclick="closePopup()">×</span>
+  <!-- POPUP BACKGROUND -->
+  <div class="popup" id="popup" onclick="handleBackgroundClick(event)">
+    
+    <!-- POPUP BOX -->
+    <div class="popup-content">
 
-  <div class="popup-content" id="popup-content">
-    <!-- 제목 + 정보 -->
-    <div class="project-info" id="project-info">
-      <!-- JS로 내용 채워짐 -->
+      <!-- FIXED PROJECT INFO -->
+      <div class="project-info" id="project-info">
+        <!-- JS -->
+      </div>
+
+      <!-- SCROLL IMAGES -->
+      <div class="project-images" id="project-images">
+        <!-- JS -->
+      </div>
+
     </div>
 
-    <!-- 이미지들 -->
-    <div class="project-images" id="project-images">
-      <!-- JS로 이미지 들어감 -->
-    </div>
+    <span class="close" onclick="closePopup()">×</span>
   </div>
-</div>
-
-
 
   <!-- SCRIPT -->
-<script>
-  function openPopup(projectNum, count) {
-    const popup = document.getElementById('popup');
-    const content = document.getElementById('popup-content');
+  <script>
+    const projects = {
+      1: {
+        title: "2–34",
+        info: "F. Kuenstler / SRC / 2024",
+        images: 3
+      },
+      2: {
+        title: "Project Name",
+        info: "Location / Program / 2023",
+        images: 4
+      }
+    };
 
-    content.innerHTML = '';
+    function openPopup(projectNum) {
+      const popup = document.getElementById('popup');
+      const info = document.getElementById('project-info');
+      const images = document.getElementById('project-images');
+      const project = projects[projectNum];
 
-    for (let i = 1; i <= count; i++) {
-      const img = document.createElement('img');
-      img.src = `images/project${projectNum}-${i}.jpg`;
-      content.appendChild(img);
+      info.innerHTML = `
+        <h1>${project.title}</h1>
+        <p>${project.info}</p>
+      `;
+
+      images.innerHTML = '';
+      for (let i = 1; i <= project.images; i++) {
+        const img = document.createElement('img');
+        img.src = \`images/project\${projectNum}-\${i}.jpg\`;
+        images.appendChild(img);
+      }
+
+      popup.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      images.scrollTop = 0;
     }
 
-    popup.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-  }
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+      document.body.style.overflow = '';
+    }
 
-  function closePopup() {
-    document.getElementById('popup').style.display = 'none';
-    document.body.style.overflow = '';
-  }
+    function handleBackgroundClick(e) {
+      if (e.target.id === 'popup') {
+        closePopup();
+      }
+    }
 
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closePopup();
-  });
-</script>
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closePopup();
+    });
+  </script>
 
+</body>
+</html>
