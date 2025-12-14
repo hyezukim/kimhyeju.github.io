@@ -52,59 +52,71 @@
     <span class="close" onclick="closePopup()">×</span>
   </div>
 
+ 
   <!-- SCRIPT -->
   <script>
-    const projects = {
-      1: {
-        title: "Graduation Project",
-        info: "흔적에서 현상으로 / 2023",
-        images: 1
-      },
-      2: {
-        title: "Academic Project",
-        info: "Kim Library / 2022",
-        images: 2
-      }
-    };
+  const projects = {
+    1: {
+      title: "Graduation Project",
+      info: "흔적에서 현상으로 / 2023",
+      images: 1
+    },
+    2: {
+      title: "Academic Project",
+      info: "Kim Library / 2022",
+      images: 2
+    }
+  };
 
-    function openPopup(projectNum) {
-      const popup = document.getElementById('popup');
-      const info = document.getElementById('project-info');
-      const images = document.getElementById('project-images');
-      const project = projects[projectNum];
+  function openPopup(projectNum) {
+    const popup = document.getElementById('popup');
+    const info = document.getElementById('project-info');
+    const images = document.getElementById('project-images');
+    const project = projects[projectNum];
 
-      info.innerHTML = `
-        <h1>${project.title}</h1>
-        <p>${project.info}</p>
-      `;
-
-      images.innerHTML = '';
-      for (let i = 1; i <= project.images; i++) {
-        const img = document.createElement('img');
-        img.src = \`images/project\${projectNum}-\${i}.jpg\`;
-        images.appendChild(img);
-      }
-
-      popup.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-      images.scrollTop = 0;
+    if (!project) {
+      console.error("Project not found:", projectNum);
+      return;
     }
 
-    function closePopup() {
-      document.getElementById('popup').style.display = 'none';
-      document.body.style.overflow = '';
+    info.innerHTML = `
+      <h1>${project.title}</h1>
+      <p>${project.info}</p>
+    `;
+
+    images.innerHTML = '';
+    for (let i = 1; i <= project.images; i++) {
+      const img = document.createElement('img');
+      img.src = `images/project${projectNum}-${i}.jpg`;
+      images.appendChild(img);
     }
 
-    function handleBackgroundClick(e) {
-      if (e.target.id === 'popup') {
-        closePopup();
-      }
-    }
+    popup.style.opacity = '1';
+    popup.style.pointerEvents = 'auto';
+    document.body.style.overflow = 'hidden';
+    images.scrollTop = 0;
+  }
 
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closePopup();
-    });
-  </script>
+  function closePopup() {
+    const popup = document.getElementById('popup');
+    popup.style.opacity = '0';
+    popup.style.pointerEvents = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function handleBackgroundClick(e) {
+    if (e.target.id === 'popup') {
+      closePopup();
+    }
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closePopup();
+    }
+  });
+</script>
+
 
 </body>
 </html>
