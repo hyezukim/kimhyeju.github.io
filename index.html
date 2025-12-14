@@ -2,84 +2,90 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>Kim Hyeju</title>
+  <title>KimHyeju</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Pretendard -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- GRID -->
-  <div class="grid">
+  <!-- TOP -->
+  <header class="top">
+    <div class="name">KimHyeju</div>
+    <button class="info-btn" onclick="toggleInfo()">i</button>
+  </header>
 
-    <div class="item">
-      <img src="images/project1-1.jpg" onclick="openPopup(1)" alt="">
-      <div class="caption">
-        Graduation Project<br>
-        From Traces to Phenomenon 흔적에서 현상으로<br>
-        2023
-      </div>
-    </div>
-
-    <div class="item">
-      <img src="images/project2-1.jpg" onclick="openPopup(2)" alt="">
-      <div class="caption">
-        Academic Project<br>
-        Kim Library<br>
-        2022
-      </div>
-    </div>
-
+  <!-- INFO POPUP -->
+  <div class="info-box" id="infoBox">
+    Architect<br>
+    Seoul, KR<br><br>
+    kimhyeju.archive@gmail.com
   </div>
+
+  <!-- GRID -->
+  <main class="grid">
+    <div class="item" onclick="openPopup(1)">
+      <img src="images/project1-1.jpg">
+      <p>Graduation Project<br>흔적에서 현상으로<br>2023</p>
+    </div>
+
+    <div class="item" onclick="openPopup(2)">
+      <img src="images/project2-1.jpg">
+      <p>Academic Project<br>Kim Library<br>2022</p>
+    </div>
+  </main>
 
   <!-- POPUP -->
-  <div class="popup" id="popup" onclick="handleBackgroundClick(event)">
-    <div class="popup-content">
-      <div class="project-images" id="project-images"></div>
+  <div class="overlay" id="overlay" onclick="overlayClick(event)">
+    <div class="popup-card">
+      <div class="popup-images" id="popupImages"></div>
     </div>
-    <span class="close" onclick="closePopup()">×</span>
   </div>
 
-  <!-- SCRIPT -->
-  <script>
-    const projects = {
-      1: { images: 2 },
-      2: { images: 3 }
-    };
+<script>
+const projects = {
+  1: 2,
+  2: 3
+};
 
-    function openPopup(projectNum) {
-      const popup = document.getElementById('popup');
-      const images = document.getElementById('project-images');
-      const project = projects[projectNum];
+function openPopup(num) {
+  const overlay = document.getElementById('overlay');
+  const images = document.getElementById('popupImages');
 
-      if (!project) return;
+  images.innerHTML = '';
+  for (let i = 1; i <= projects[num]; i++) {
+    const img = document.createElement('img');
+    img.src = `images/project${num}-${i}.jpg`;
+    images.appendChild(img);
+  }
 
-      images.innerHTML = '';
-      for (let i = 1; i <= project.images; i++) {
-        const img = document.createElement('img');
-        img.src = `images/project${projectNum}-${i}.jpg`;
-        images.appendChild(img);
-      }
+  overlay.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
 
-      popup.style.opacity = '1';
-      popup.style.pointerEvents = 'auto';
-      document.body.style.overflow = 'hidden';
-    }
+function overlayClick(e) {
+  if (e.target.id === 'overlay') closePopup();
+}
 
-    function closePopup() {
-      const popup = document.getElementById('popup');
-      popup.style.opacity = '0';
-      popup.style.pointerEvents = 'none';
-      document.body.style.overflow = '';
-    }
+function closePopup() {
+  document.getElementById('overlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
 
-    function handleBackgroundClick(e) {
-      if (e.target.id === 'popup') closePopup();
-    }
+function toggleInfo() {
+  document.getElementById('infoBox').classList.toggle('show');
+}
 
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closePopup();
-    });
-  </script>
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closePopup();
+    document.getElementById('infoBox').classList.remove('show');
+  }
+});
+</script>
 
 </body>
 </html>
