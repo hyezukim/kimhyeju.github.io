@@ -53,49 +53,30 @@
 
 
   <!-- SCRIPT -->
-  <script>
-    let currentProject = 0;
-    let currentIndex = 1;
-    let totalImages = 0;
+<script>
+  function openPopup(projectNum, count) {
+    const popup = document.getElementById('popup');
+    const content = document.getElementById('popup-content');
 
-    function openPopup(projectNum, count) {
-      currentProject = projectNum;
-      totalImages = count;
-      currentIndex = 1;
+    content.innerHTML = '';
 
-      updateImage();
-      document.getElementById('popup').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+    for (let i = 1; i <= count; i++) {
+      const img = document.createElement('img');
+      img.src = `images/project${projectNum}-${i}.jpg`;
+      content.appendChild(img);
     }
 
-    function closePopup() {
-      document.getElementById('popup').style.display = 'none';
-      document.body.style.overflow = '';
-    }
+    popup.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
 
-    function updateImage() {
-      document.getElementById('popup-img').src =
-        `images/project${currentProject}-${currentIndex}.jpg`;
-    }
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+    document.body.style.overflow = '';
+  }
 
-    function nextImage() {
-      currentIndex++;
-      if (currentIndex > totalImages) currentIndex = 1;
-      updateImage();
-    }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closePopup();
+  });
+</script>
 
-    function prevImage() {
-      currentIndex--;
-      if (currentIndex < 1) currentIndex = totalImages;
-      updateImage();
-    }
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closePopup();
-      if (e.key === 'ArrowRight') nextImage();
-      if (e.key === 'ArrowLeft') prevImage();
-    });
-  </script>
-
-</body>
-</html>
