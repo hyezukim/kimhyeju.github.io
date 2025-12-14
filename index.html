@@ -8,13 +8,12 @@
 </head>
 <body>
 
+  <!-- GRID -->
   <div class="grid">
 
-    <!-- ITEM 1 -->
+    <!-- PROJECT 1 -->
     <div class="item">
-      <a href="#img1">
-        <img src="images/project1.jpg" alt="">
-      </a>
+      <img src="images/project1-1.jpg" alt="" onclick="openPopup(1,3)">
       <div class="caption">
         Graduation Project<br>
         흔적에서 현상으로<br>
@@ -22,11 +21,9 @@
       </div>
     </div>
 
-    <!-- ITEM 2 -->
+    <!-- PROJECT 2 -->
     <div class="item">
-      <a href="#img2">
-        <img src="images/project2.jpg" alt="">
-      </a>
+      <img src="images/project2-1.jpg" alt="" onclick="openPopup(2,4)">
       <div class="caption">
         Project Name<br>
         Location<br>
@@ -34,11 +31,9 @@
       </div>
     </div>
 
-    <!-- ITEM 3 -->
+    <!-- PROJECT 3 -->
     <div class="item">
-      <a href="#img3">
-        <img src="images/project3.jpg" alt="">
-      </a>
+      <img src="images/project3-1.jpg" alt="" onclick="openPopup(3,2)">
       <div class="caption">
         Another Project<br>
         Program
@@ -47,23 +42,59 @@
 
   </div>
 
-  <!-- LIGHTBOX 1 -->
-  <div id="img1" class="lightbox">
-    <a href="#" class="close">×</a>
-    <img src="images/project1.jpg" alt="">
+  <!-- POPUP -->
+  <div class="popup" id="popup">
+    <span class="close" onclick="closePopup()">×</span>
+
+    <button class="nav prev" onclick="prevImage()">‹</button>
+    <img id="popup-img" src="" alt="">
+    <button class="nav next" onclick="nextImage()">›</button>
   </div>
 
-  <!-- LIGHTBOX 2 -->
-  <div id="img2" class="lightbox">
-    <a href="#" class="close">×</a>
-    <img src="images/project2.jpg" alt="">
-  </div>
+  <!-- SCRIPT -->
+  <script>
+    let currentProject = 0;
+    let currentIndex = 1;
+    let totalImages = 0;
 
-  <!-- LIGHTBOX 3 -->
-  <div id="img3" class="lightbox">
-    <a href="#" class="close">×</a>
-    <img src="images/project3.jpg" alt="">
-  </div>
+    function openPopup(projectNum, count) {
+      currentProject = projectNum;
+      totalImages = count;
+      currentIndex = 1;
+
+      updateImage();
+      document.getElementById('popup').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function updateImage() {
+      document.getElementById('popup-img').src =
+        `images/project${currentProject}-${currentIndex}.jpg`;
+    }
+
+    function nextImage() {
+      currentIndex++;
+      if (currentIndex > totalImages) currentIndex = 1;
+      updateImage();
+    }
+
+    function prevImage() {
+      currentIndex--;
+      if (currentIndex < 1) currentIndex = totalImages;
+      updateImage();
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closePopup();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+    });
+  </script>
 
 </body>
 </html>
