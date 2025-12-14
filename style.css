@@ -42,3 +42,7 @@ h1 {
   color: #999;
   letter-spacing: 0.02em;
 }
+
+.item a {
+  cursor: zoom-in;
+}
