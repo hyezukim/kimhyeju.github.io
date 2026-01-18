@@ -2,112 +2,52 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Pretendard', sans-serif;
 }
 
+/* BASE */
 body {
-  background: #fff;
-  color: #111;
-}
-
-/* TOP */
-.top {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  display: flex;
-  justify-content: space-between;
-  z-index: 10;
-}
-
-.name {
-  font-size: 14px;
-}
-
-.info-btn {
-  width: 22px;
-  height: 22px;
-  border: 1px solid #ccc;
-  background: none;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-/* INFO BOX */
-.info-box {
-  position: fixed;
-  top: 60px;
-  right: 20px;
-  width: 220px;
-  padding: 14px;
-  border: 1px solid #ddd;
-  background: #fff;
-  font-size: 12px;
-  line-height: 1.6;
-  opacity: 0;
-  pointer-events: none;
-  transition: .2s;
-  z-index: 10;
-}
-
-.info-box.show {
-  opacity: 1;
-  pointer-events: auto;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #ffffff;
+  color: #000;
 }
 
 /* GRID */
 .grid {
-  padding: 120px 40px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 80px 60px;
+  padding: 80px 60px;
+  align-items: end; /* ⬅️ 아래맞춤 핵심 */
 }
 
+/* ITEM */
+.item {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* THUMBNAIL */
 .item img {
   width: 100%;
+  display: block;
+  background: #000;
 }
 
-.item p {
-  margin-top: 8px;
-  font-size: 12px;
+/* CAPTION */
+.caption {
+  margin-top: 12px;
+  font-size: 13px;
   line-height: 1.4;
+  color: #111;
 }
 
-/* OVERLAY */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(255,255,255,0.6);
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: .3s;
-  z-index: 20;
-}
-
-.overlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* POPUP CARD */
-.popup-card {
-  width: 70%;
-  max-width: 1100px;
-  max-height: 80vh;
-  background: #fff;
-  border-radius: 0px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-  overflow-y: auto;
-  padding: 40px;
-}
-
-/* IMAGES */
-.popup-images img {
-  width: 100%;
-  margin-bottom: 40px;
+/* MOBILE */
+@media (max-width: 768px) {
+  .grid {
+    gap: 60px 40px;
+    padding: 60px 24px;
+  }
 }
