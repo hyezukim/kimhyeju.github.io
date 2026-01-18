@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title> </title>
+  <title>Kim Hyeju</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Pretendard -->
@@ -12,75 +12,28 @@
 </head>
 <body>
 
-
-  <!-- INFO POPUP -->
-  <div class="info-box" id="infoBox">
-    Architect<br>
-    Seoul, KR<br><br>
-    kimhyeju.archive@gmail.com
-  </div>
-
   <!-- GRID -->
-  <main class="grid">
-    <div class="item" onclick="openPopup(1)">
-      <img src="images/project1-1.jpg">
-      <p>Graduation Project<br>흔적에서 현상으로<br>2023</p>
-    </div>
+  <div class="grid">
 
-    <div class="item" onclick="openPopup(2)">
-      <img src="images/project2-1.jpg">
-      <p>Academic Project<br>Kim Library<br>2022</p>
-    </div>
-  </main>
+    <a href="project-1.html" class="item">
+      <img src="images/project1-1.jpg" alt="">
+      <div class="caption">
+        Graduation Project<br>
+        흔적에서 현상으로<br>
+        2023
+      </div>
+    </a>
 
-  <!-- POPUP -->
-  <div class="overlay" id="overlay" onclick="overlayClick(event)">
-    <div class="popup-card">
-      <div class="popup-images" id="popupImages"></div>
-    </div>
+    <a href="project-2.html" class="item">
+      <img src="images/project2-1.jpg" alt="">
+      <div class="caption">
+        Academic Project<br>
+        Kim Library<br>
+        2022
+      </div>
+    </a>
+
   </div>
-
-<script>
-const projects = {
-  1: 2,
-  2: 3
-};
-
-function openPopup(num) {
-  const overlay = document.getElementById('overlay');
-  const images = document.getElementById('popupImages');
-
-  images.innerHTML = '';
-  for (let i = 1; i <= projects[num]; i++) {
-    const img = document.createElement('img');
-    img.src = `images/project${num}-${i}.jpg`;
-    images.appendChild(img);
-  }
-
-  overlay.classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-
-function overlayClick(e) {
-  if (e.target.id === 'overlay') closePopup();
-}
-
-function closePopup() {
-  document.getElementById('overlay').classList.remove('show');
-  document.body.style.overflow = '';
-}
-
-function toggleInfo() {
-  document.getElementById('infoBox').classList.toggle('show');
-}
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    closePopup();
-    document.getElementById('infoBox').classList.remove('show');
-  }
-});
-</script>
 
 </body>
 </html>
