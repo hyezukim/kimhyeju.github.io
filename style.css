@@ -1,66 +1,83 @@
-/* RESET */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  font-family: "Pretendard", sans-serif;
   background: #fff;
   color: #000;
 }
 
-/* GRID */
+/* info button */
+.info-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #000;
+  background: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* info popup */
+.info-popup {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  width: 220px;
+  padding: 12px;
+  border: 1px solid #000;
+  background: #fff;
+  font-size: 12px;
+  line-height: 1.5;
+  display: none;
+}
+
+.info-popup.show {
+  display: block;
+}
+
+/* grid layout */
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 80px 60px;
-  padding: 120px 80px;
-  align-items: end; /* 🔥 하단 정렬 */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 32px;
+  padding: 80px 40px;
 }
 
-/* PROJECT ITEM */
-.project-item {
+/* item */
+.item {
   text-decoration: none;
   color: inherit;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
 }
 
-/* THUMBNAIL */
-.thumb {
+.item img {
   width: 100%;
   aspect-ratio: 1 / 1;
-  background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.thumb img {
-  width: 100%;
-  height: 100%;
   object-fit: contain;
+  background: #000;
+  display: block;
 }
 
-/* CAPTION */
+/* caption */
 .caption {
-  font-size: 16px;
-  line-height: 1.5;
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
-/* MOBILE */
+/* mobile */
 @media (max-width: 768px) {
   .grid {
-    grid-template-columns: 1fr;
-    gap: 48px;
-    padding: 60px 24px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 20px;
+    padding: 60px 20px;
   }
 
   .caption {
-    font-size: 15px;
+    font-size: 12px;
   }
 }
