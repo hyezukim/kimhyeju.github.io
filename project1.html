@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Graduation Project – Kim Hyeju</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Pretendard -->
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Pretendard", sans-serif;
+      background: #fff;
+      color: #000;
+    }
+
+    /* 상단 정보 */
+    .project-header {
+      max-width: 1200px;
+      margin: 60px auto 40px;
+      padding: 0 40px;
+    }
+
+    .project-header h1 {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .project-header p {
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* 슬라이더 */
+    .slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 40px;
+      padding: 0 40px 80px;
+    }
+
+    .slide {
+      flex: 0 0 auto;
+      width: 600px;
+      scroll-snap-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slide img {
+      max-width: 100%;
+      max-height: 85vh;
+      object-fit: contain;
+      background: #000;
+    }
+
+    /* 모바일 */
+    @media (max-width: 768px) {
+      .project-header {
+        margin: 40px 0 20px;
+        padding: 0 20px;
+      }
+
+      .slider {
+        padding: 0 20px 60px;
+        gap: 20px;
+      }
+
+      .slide {
+        width: 100vw;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PROJECT INFO -->
+  <div class="project-header">
+    <h1>Graduation Project</h1>
+    <p>흔적에서 현상으로<br>2023</p>
+  </div>
+
+  <!-- IMAGE SLIDER -->
+  <div class="slider">
+    <div class="slide">
+      <img src="images/project1-1.jpg" alt="">
+    </div>
+    <div class="slide">
+      <img src="images/project1-2.jpg" alt="">
+    </div>
+  </div>
+
+</body>
+</html>
