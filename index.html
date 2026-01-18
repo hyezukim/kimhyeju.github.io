@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title> </title>
+  <title>Kim Hyeju</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Pretendard -->
@@ -13,34 +13,47 @@
 </head>
 <body>
 
-  <!-- PROJECT GRID -->
+  <!-- info button -->
+  <button class="info-btn" onclick="toggleInfo()">i</button>
+
+  <!-- info popup -->
+  <div class="info-popup" id="infoPopup">
+    <p>
+      Kim Hyeju<br>
+      Architecture Portfolio<br><br>
+      Contact<br>
+      email@example.com
+    </p>
+  </div>
+
+  <!-- grid -->
   <main class="grid">
 
-    <!-- Project 1 -->
-    <a href="project1.html" class="project-item">
-      <div class="thumb">
-        <img src="/images/project1-1.jpg" alt="Graduation Project">
-      </div>
+    <a href="project1.html" class="item">
+      <img src="images/project1-1.jpg" alt="">
       <div class="caption">
-        <strong>Graduation Project</strong><br>
-        흔적에서 현상으로<br>
-        2023
+        <span>Graduation Project</span>
+        <span>흔적에서 현상으로</span>
+        <span>2023</span>
       </div>
     </a>
 
-    <!-- Project 2 -->
-    <a href="project2.html" class="project-item">
-      <div class="thumb">
-        <img src="/images/project2-1.jpg" alt="Kim Library">
-      </div>
+    <a href="project2.html" class="item">
+      <img src="images/project2-1.jpg" alt="">
       <div class="caption">
-        <strong>Academic Project</strong><br>
-        Kim Library<br>
-        2022
+        <span>Academic Project</span>
+        <span>Kim Library</span>
+        <span>2022</span>
       </div>
     </a>
 
   </main>
+
+  <script>
+    function toggleInfo() {
+      document.getElementById("infoPopup").classList.toggle("show");
+    }
+  </script>
 
 </body>
 </html>
