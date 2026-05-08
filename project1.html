@@ -10,6 +10,11 @@
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
 
   <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: "Pretendard", sans-serif;
@@ -25,71 +30,144 @@
       display: none;
     }
 
-    /* 슬라이더 */
-    .slider {
-      display: flex;
-      flex-direction: column;   /* ← 세로 스크롤 */
-      align-items: center;
+    /* 전체 레이아웃 */
 
-      gap: 80px;
+    .project-wrap {
 
-      padding: 80px 0 120px;
-
-      overflow-y: auto;
-
-      /* 스크롤바 숨기기 */
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    .slider::-webkit-scrollbar {
-      display: none;
-    }
-
-    .slide {
       width: 100%;
 
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
+
+      gap: 120px;
+
+      padding: 80px 60px 120px;
     }
 
-    .slide img {
-      width: 70vw;          /* ← 이미지 가로폭 균일 */
-      max-width: 1000px;
+    /* 한 섹션 */
+
+    .section {
+
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+
+      gap: 60px;
+    }
+
+    /* 이미지 */
+
+    .image-area {
+      width: 45%;
+    }
+
+    .image-area img {
+
+      width: 100%;
+
+      display: block;
 
       object-fit: contain;
 
       background: #000;
     }
 
+    /* 설명 */
+
+    .text-area {
+
+      width: 320px;
+
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .text-area h1 {
+
+      margin: 0 0 16px;
+
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .text-area p {
+      margin: 0;
+    }
+
     /* 모바일 */
+
     @media (max-width: 768px) {
 
-      .slider {
-        gap: 40px;
-        padding: 40px 0 80px;
+      .project-wrap {
+        gap: 80px;
+        padding: 40px 20px 80px;
       }
 
-      .slide img {
-        width: calc(100vw - 40px);
+      .section {
+
+        flex-direction: column;
+
+        gap: 24px;
+      }
+
+      .image-area {
+        width: 100%;
+      }
+
+      .text-area {
+        width: 100%;
       }
 
     }
+
   </style>
 </head>
 
 <body>
 
-  <!-- IMAGE LIST -->
-  <div class="slider">
+  <div class="project-wrap">
 
-    <div class="slide">
-      <img src="images/project1-1.jpg" alt="">
+    <!-- section 1 -->
+
+    <div class="section">
+
+      <div class="image-area">
+        <img src="images/project1-1.jpg" alt="">
+      </div>
+
+      <div class="text-area">
+
+        <h1>Graduation Project</h1>
+
+        <p>
+          흔적에서 현상으로<br>
+          2023<br><br>
+
+          이곳에 프로젝트 설명 작성.<br>
+          공간 개념 / 프로그램 / 재료 / 구조 등 자유롭게 입력 가능.
+        </p>
+
+      </div>
+
     </div>
 
-    <div class="slide">
-      <img src="images/project1-2.jpg" alt="">
+    <!-- section 2 -->
+
+    <div class="section">
+
+      <div class="image-area">
+        <img src="images/project1-2.jpg" alt="">
+      </div>
+
+      <div class="text-area">
+
+        <p>
+          두 번째 이미지 설명.<br>
+          다이어그램이나 공간 설명 등 작성 가능.
+        </p>
+
+      </div>
+
     </div>
 
   </div>
