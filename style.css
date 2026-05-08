@@ -11,7 +11,10 @@ body {
 
 /* 뒤로가기 버튼 */
 
-.back-button {
+.back-button,
+.back-button:visited,
+.back-button:hover,
+.back-button:active {
 
   position: fixed;
 
@@ -19,19 +22,12 @@ body {
   left: 24px;
 
   font-size: 13px;
+
   color: #000;
 
   text-decoration: none;
 
   z-index: 1000;
-}
-
-.back-button,
-.back-button:visited,
-.back-button:hover,
-.back-button:active {
-  text-decoration: none;
-  color: #000;
 }
 
 /* INFO BUTTON */
