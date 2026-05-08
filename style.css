@@ -9,6 +9,27 @@ body {
   color: #000;
 }
 
+/* 뒤로가기 버튼 */
+
+.back-button {
+
+  position: fixed;
+
+  top: 24px;
+  left: 24px;
+
+  font-size: 13px;
+  color: #000;
+
+  text-decoration: none;
+
+  z-index: 1000;
+}
+
+.back-button:hover {
+  opacity: 0.4;
+}
+
 /* INFO BUTTON */
 
 .info-btn {
