@@ -26,8 +26,12 @@ body {
   z-index: 1000;
 }
 
-.back-button:hover {
-  opacity: 0.4;
+.back-button,
+.back-button:visited,
+.back-button:hover,
+.back-button:active {
+  text-decoration: none;
+  color: #000;
 }
 
 /* INFO BUTTON */
