@@ -71,19 +71,25 @@
   </div>
 
   <script>
-    const items = document.querySelectorAll('.project-item');
-    const preview = document.getElementById('preview-image');
+  const items = document.querySelectorAll('.project-item');
+  const preview = document.getElementById('preview-image');
 
-    items.forEach(item => {
-      item.addEventListener('mouseenter', () => {
-        preview.src = item.dataset.image;
-      });
+  items.forEach(item => {
+
+    item.addEventListener('mouseenter', () => {
+      preview.src = item.dataset.image;
+      preview.style.opacity = 1;
     });
 
-    function toggleInfo() {
-      document.getElementById('infoPopup').classList.toggle('show');
-    }
-  </script>
+    item.addEventListener('mouseleave', () => {
+      preview.style.opacity = 0;
+    });
 
+  });
+
+  function toggleInfo() {
+    document.getElementById('infoPopup').classList.toggle('show');
+  }
+</script>
 </body>
 </html>
