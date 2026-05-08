@@ -2,56 +2,90 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title> </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Kim Hyeju</title>
 
   <!-- Pretendard -->
   <link rel="stylesheet" as="style" crossorigin
-    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <!-- info button -->
+  <!-- INFO BUTTON -->
   <button class="info-btn" onclick="toggleInfo()">i</button>
 
-  <!-- info popup -->
+  <!-- INFO POPUP -->
   <div class="info-popup" id="infoPopup">
-    <p>
-      Hyeju Kim<br>
-      Architect, Seoul<br><br>
-      Contact<br>
-      kimhyeju.archive@gmail.com
-    </p>
+    Kim Hyeju<br><br>
+
+    Architecture Portfolio<br>
+    Seoul based<br><br>
+
+    Instagram<br>
+    @yourinstagram<br><br>
+
+    Contact<br>
+    your@email.com
   </div>
 
-  <!-- grid -->
-  <main class="grid">
+  <div class="container">
 
-    <a href="project1.html" class="item">
-      <img src="images/project1-1.jpg" alt="">
-      <div class="caption">
-        <span>Graduation Project</span><br>
-        <span>흔적에서 현상으로</span><br>
-        <span>2023</span>
-      </div>
-    </a>
+    <!-- LEFT LIST -->
+    <div class="project-list">
 
-    <a href="project2.html" class="item">
-      <img src="images/project2-1.jpg" alt="">
-      <div class="caption">
-        <span>Academic Project</span><br>
-        <span>Kim Library</span><br>
-        <span>2022</span>
-      </div>
-    </a>
+      <a href="project1.html"
+         class="project-item"
+         data-image="images/project1-1.jpg">
 
-  </main>
+        <span class="number">01</span>
+
+        <div class="text">
+          Graduation Project<br>
+          흔적에서 현상으로<br>
+          2023
+        </div>
+      </a>
+
+      <a href="project2.html"
+         class="project-item"
+         data-image="images/project2-1.jpg">
+
+        <span class="number">02</span>
+
+        <div class="text">
+          Academic Project<br>
+          Kim Library<br>
+          2022
+        </div>
+      </a>
+
+    </div>
+
+    <!-- RIGHT IMAGE -->
+    <div class="preview">
+      <img id="preview-image"
+           src="images/project1-1.jpg"
+           alt="">
+    </div>
+
+  </div>
 
   <script>
+    const items = document.querySelectorAll('.project-item');
+    const preview = document.getElementById('preview-image');
+
+    items.forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        preview.src = item.dataset.image;
+      });
+    });
+
     function toggleInfo() {
-      document.getElementById("infoPopup").classList.toggle("show");
+      document.getElementById('infoPopup').classList.toggle('show');
     }
   </script>
 
