@@ -6,74 +6,225 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Pretendard -->
-  <link rel="stylesheet" as="style" crossorigin
-    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+  <link
+    rel="stylesheet"
+    as="style"
+    crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+  />
 
   <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: "Pretendard", sans-serif;
       background: #fff;
       color: #000;
+
+      /* 스크롤바 숨기기 */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
 
+    body::-webkit-scrollbar {
+      display: none;
+    }
 
-    .slider {
+    /* 뒤로가기 버튼 */
+
+    .back-button,
+    .back-button:visited,
+    .back-button:hover,
+    .back-button:active {
+
+      position: fixed;
+
+      top: 24px;
+      left: 24px;
+
+      font-size: 13px;
+      font-weight: 400;
+
+      color: #000;
+
+      text-decoration: none;
+
+      z-index: 1000;
+    }
+
+    /* 전체 레이아웃 */
+
+    .project-wrap {
+
+      width: 100%;
+
       display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
+      flex-direction: column;
+
+      gap: 48px;
+
+      padding: 80px 60px 120px;
+    }
+
+    /* 한 섹션 */
+
+    .section {
+
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+
       gap: 40px;
-      padding: 0 40px 80px;
     }
 
-    .slide {
-      flex: 0 0 auto;
-      width: 600px;
-      scroll-snap-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    /* 이미지 */
+
+    .image-area {
+      width: 22%;
     }
 
-    .slide img {
-      max-width: 100%;
-      max-height: 85vh;
+    .image-area img {
+
+      width: 100%;
+
+      display: block;
+
       object-fit: contain;
+
       background: #000;
     }
 
+    /* 설명 */
+
+    .text-area {
+
+      width: 320px;
+
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .text-area h1 {
+
+      margin: 0 0 16px;
+
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .text-area p {
+      margin: 0;
+    }
+
+    /* 모바일 */
+
     @media (max-width: 768px) {
-      .project-header {
-        margin: 40px 0 20px;
-        padding: 0 20px;
+
+      .project-wrap {
+
+        gap: 60px;
+
+        padding: 72px 20px 80px;
       }
 
-      .slider {
-        padding: 0 20px 60px;
+      .section {
+
+        flex-direction: column;
+
         gap: 20px;
       }
 
-      .slide {
-        width: 100vw;
+      .image-area {
+        width: 100%;
       }
+
+      .text-area {
+        width: 100%;
+      }
+
     }
+
   </style>
 </head>
+
 <body>
 
+  <!-- 뒤로가기 -->
 
-  <!-- IMAGE SLIDER -->
-  <div class="slider">
-    <div class="slide">
-      <img src="images/project2-1.jpg" alt="">
+  <a href="index.html" class="back-button">
+    ← index
+  </a>
+
+  <!-- 프로젝트 -->
+
+  <div class="project-wrap">
+
+    <!-- section 1 -->
+
+    <div class="section">
+
+      <div class="image-area">
+        <img src="images/project2-1.jpg" alt="">
+      </div>
+
+      <div class="text-area">
+
+        <h1>Academic Project</h1>
+
+        <p>
+          Kim Library<br>
+          2022<br><br>
+
+          update soon....<br>
+          ...
+        </p>
+
+      </div>
+
     </div>
-    <div class="slide">
-      <img src="images/project2-2.jpg" alt="">
+
+    <!-- section 2 -->
+
+    <div class="section">
+
+      <div class="image-area">
+        <img src="images/project2-2.jpg" alt="">
+      </div>
+
+      <div class="text-area">
+
+        <p>
+          update soon....<br>
+          ...
+        </p>
+
+      </div>
+
     </div>
-    <div class="slide">
-      <img src="images/project2-3.jpg" alt="">
+
+    <!-- section 3 -->
+
+    <div class="section">
+
+      <div class="image-area">
+        <img src="images/project2-3.jpg" alt="">
+      </div>
+
+      <div class="text-area">
+
+        <p>
+          세 번째 이미지 설명.<br>
+          재료 및 공간 분위기 설명 등 입력 가능.
+        </p>
+
+      </div>
+
     </div>
+
   </div>
 
 </body>
