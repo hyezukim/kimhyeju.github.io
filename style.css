@@ -9,75 +9,159 @@ body {
   color: #000;
 }
 
-/* info button */
+/* INFO BUTTON */
+
 .info-btn {
   position: fixed;
   top: 20px;
   right: 20px;
+
   width: 28px;
   height: 28px;
+
   border: 1px solid #000;
   background: #fff;
+
   font-size: 14px;
   cursor: pointer;
+
+  z-index: 100;
 }
 
-/* info popup */
+/* INFO POPUP */
+
 .info-popup {
   position: fixed;
   top: 60px;
   right: 20px;
+
   width: 220px;
-  padding: 12px;
+
+  padding: 14px;
+
   border: 1px solid #000;
   background: #fff;
+
   font-size: 12px;
-  line-height: 1.5;
+  line-height: 1.6;
+
   display: none;
+
+  z-index: 100;
 }
 
 .info-popup.show {
   display: block;
 }
 
-/* grid layout */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 32px;
-  padding: 80px 40px;
+/* MAIN LAYOUT */
+
+.container {
+  display: flex;
+
+  height: 100vh;
+
+  padding: 40px;
+  gap: 40px;
 }
 
-/* item */
-.item {
+/* LEFT */
+
+.project-list {
+  width: 35%;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 32px;
+}
+
+/* ITEM */
+
+.project-item {
+  display: flex;
+  gap: 20px;
+
   text-decoration: none;
   color: inherit;
+
+  transition: opacity 0.2s ease;
 }
 
-.item img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
-  background: #000;
-  display: block;
+.project-item:hover {
+  opacity: 0.5;
 }
 
-/* caption */
-.caption {
-  margin-top: 10px;
-  font-size: 13px;
+/* NUMBER */
+
+.number {
+  font-size: 14px;
+  width: 30px;
+}
+
+/* TEXT */
+
+.text {
+  font-size: 20px;
   line-height: 1.4;
 }
 
-/* mobile */
+/* RIGHT IMAGE */
+
+.preview {
+  width: 65%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview img {
+  width: 100%;
+  max-width: 900px;
+  max-height: 80vh;
+
+  object-fit: contain;
+
+  background: #000;
+}
+
+/* MOBILE */
+
 @media (max-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 20px;
-    padding: 60px 20px;
+
+  .container {
+    flex-direction: column;
+
+    height: auto;
+
+    padding: 80px 20px 40px;
   }
 
-  .caption {
-    font-size: 12px;
+  .project-list {
+    width: 100%;
+    gap: 24px;
   }
+
+  .project-item {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .text {
+    font-size: 16px;
+  }
+
+  .preview {
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .preview img {
+    width: 100%;
+    max-height: none;
+  }
+
 }
