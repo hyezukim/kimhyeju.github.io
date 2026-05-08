@@ -15,64 +15,83 @@
       font-family: "Pretendard", sans-serif;
       background: #fff;
       color: #000;
+
+      /* 스크롤바 숨기기 */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
 
+    body::-webkit-scrollbar {
+      display: none;
+    }
 
     /* 슬라이더 */
     .slider {
       display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      gap: 40px;
-      padding: 0 40px 80px;
+      flex-direction: column;   /* ← 세로 스크롤 */
+      align-items: center;
+
+      gap: 80px;
+
+      padding: 80px 0 120px;
+
+      overflow-y: auto;
+
+      /* 스크롤바 숨기기 */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .slider::-webkit-scrollbar {
+      display: none;
     }
 
     .slide {
-      flex: 0 0 auto;
-      width: 600px;
-      scroll-snap-align: center;
+      width: 100%;
+
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
     .slide img {
-      max-width: 100%;
-      max-height: 85vh;
+      width: 70vw;          /* ← 이미지 가로폭 균일 */
+      max-width: 1000px;
+
       object-fit: contain;
+
       background: #000;
     }
 
     /* 모바일 */
     @media (max-width: 768px) {
-      .project-header {
-        margin: 40px 0 20px;
-        padding: 0 20px;
-      }
 
       .slider {
-        padding: 0 20px 60px;
-        gap: 20px;
+        gap: 40px;
+        padding: 40px 0 80px;
       }
 
-      .slide {
-        width: 100vw;
+      .slide img {
+        width: calc(100vw - 40px);
       }
+
     }
   </style>
 </head>
+
 <body>
 
-
-  <!-- IMAGE SLIDER -->
+  <!-- IMAGE LIST -->
   <div class="slider">
+
     <div class="slide">
       <img src="images/project1-1.jpg" alt="">
     </div>
+
     <div class="slide">
       <img src="images/project1-2.jpg" alt="">
     </div>
+
   </div>
 
 </body>
