@@ -26,6 +26,9 @@
     class="info-button"
     id="infoButton"
     type="button"
+    aria-label="프로필 정보 열기"
+    aria-controls="infoOverlay"
+    aria-expanded="false"
   >
     i
   </button>
@@ -48,7 +51,8 @@
 
       <!-- PROJECT 01 -->
 
-      <div
+      <button
+        type="button"
         class="project-item"
         data-project="1"
       >
@@ -66,13 +70,14 @@
           2023
         </div>
 
-      </div>
+      </button>
 
 
 
       <!-- PROJECT 02 -->
 
-      <div
+      <button
+        type="button"
         class="project-item"
         data-project="2"
       >
@@ -82,16 +87,40 @@
         </div>
 
         <div class="project-name">
-          Academic Project<br>
-          Kim Library
+          Competition Project<br>
+          정확한 한국성의 실험
         </div>
 
         <div class="project-year">
           2022
         </div>
 
-      </div>
+      </button>
 
+
+
+      <!-- PROJECT 03 -->
+
+      <button
+        type="button"
+        class="project-item"
+        data-project="3"
+      >
+
+        <div class="project-number">
+          03
+        </div>
+
+        <div class="project-name">
+          Academic Project<br>
+          김중업 Memorial 도서관
+        </div>
+
+        <div class="project-year">
+          2022
+        </div>
+
+      </button>
 
     </section>
 
@@ -108,9 +137,7 @@
 
       <div class="project-content">
 
-
         <div class="project-header">
-
           <h1
             class="project-title"
             id="projectTitle"
@@ -124,10 +151,10 @@
         </div>
 
 
-        <div
-          class="project-images"
-          id="projectImages"
-        ></div>
+        <article
+          class="project-article"
+          id="projectArticle"
+        ></article>
 
 
       </div>
@@ -142,6 +169,7 @@
       class="close-button"
       id="closeButton"
       type="button"
+      aria-label="프로젝트 닫기"
     >
       ×
     </button>
@@ -152,12 +180,361 @@
 
 
   <!-- =========================
+       PROJECT CONTENT TEMPLATES
+  ========================== -->
+
+  <template id="project1Template">
+    <section class="project-overview reveal">
+      <dl class="project-meta">
+        <div><dt>Year</dt><dd>2023</dd></div>
+        <div><dt>Location</dt><dd>Jongno-gu, Seoul</dd></div>
+        <div><dt>Program</dt><dd>Cultural, Public</dd></div>
+        <div><dt>Type</dt><dd>Individual Work</dd></div>
+      </dl>
+
+      <div class="project-intro">
+        <p>
+          사람들은 익숙한 것에는 그다지 관심을 두지 않는다. 일상 속 건축 역시 익숙하다는 이유로 인식되지 못한 채 지나치기 쉽다. 이 프로젝트는 그렇게 무의식 속에 남은 건축을 다시 바라보는 데서 시작했다.
+        </p>
+        <p>
+          건축의 기능적 속성에서 벗어나기 위한 ‘낯설게 하기’를 제안하고, 도시에서 단절된 창신동 절개지를 새로운 현상이 일어나는 장소로 전환한다.
+        </p>
+      </div>
+    </section>
+
+    <figure class="project-media project-media--hero reveal">
+      <img src="images/projects/project-01/site-view.webp" width="2154" height="1523" alt="창신동 절개지와 제안 건축물의 전경" loading="eager" decoding="async">
+      <figcaption>Changsin-dong cliff and proposed architecture</figcaption>
+    </figure>
+
+    <section class="project-story reveal">
+      <div class="story-heading">
+        <span>01</span>
+        <h2>낯설게 하기</h2>
+      </div>
+      <div class="story-copy">
+        <p>
+          서울의 중심에 위치한 창신동 절개지는 도시의 살아 있는 기록이자 이면적 장소이며, 현재는 절벽이라는 특수한 오브제로 남아 있다. 역사가 축적된 이 땅의 의미를 되짚고, 과거 도시의 전환점이었던 장소에 또 다른 가능성을 제시한다.
+        </p>
+        <p>
+          채석장에서 비롯된 재료의 구축 논리와 시간의 흐름을 따라 단절된 땅에 현재의 것을 덧붙인다. 고착된 땅을 다시 바라보게 함으로써 장소의 의미와 도시의 낯선 풍경을 드러낸다.
+        </p>
+      </div>
+    </section>
+
+    <div class="project-grid project-grid--two reveal">
+      <figure class="project-media">
+        <img src="images/projects/project-01/site-plan.webp" width="1230" height="971" alt="창신동 절개지 배치도" loading="lazy" decoding="async">
+        <figcaption>Site plan</figcaption>
+      </figure>
+      <figure class="project-media">
+        <img src="images/projects/project-01/site-section.webp" width="2151" height="1521" alt="절개지와 건축물의 대지 단면" loading="lazy" decoding="async">
+        <figcaption>Site section</figcaption>
+      </figure>
+    </div>
+
+    <section class="project-story reveal">
+      <div class="story-heading">
+        <span>02</span>
+        <h2>흔적에서 현상으로</h2>
+      </div>
+      <div class="story-copy">
+        <p>
+          창신동은 100년의 시간 동안 존재와 소멸, 변질의 과정이 시각적으로 드러난 장소다. 시간의 흔적에 집중해 보이지 않는 장소의 궤적을 보이는 현상으로 되돌린다.
+        </p>
+        <p>
+          건축물의 모든 이동은 램프를 통해 이뤄진다. 외부에서 내부로, 수평의 땅에서 수직의 절벽으로 이어지는 이동은 대지와 건축의 경계를 흐리며 서로를 연결한다.
+        </p>
+      </div>
+    </section>
+
+    <figure class="project-media project-media--wide reveal">
+      <img src="images/projects/project-01/cliff-section.webp" width="1945" height="718" alt="절벽과 건축물의 장단면 투시도" loading="lazy" decoding="async">
+      <figcaption>Cliff section</figcaption>
+    </figure>
+
+    <div class="project-grid project-grid--three reveal">
+      <figure class="project-media project-media--portrait">
+        <img src="images/projects/project-01/plan-b1.webp" width="564" height="1522" alt="지하층 평면도" loading="lazy" decoding="async">
+        <figcaption>B1 plan</figcaption>
+      </figure>
+      <figure class="project-media project-media--portrait">
+        <img src="images/projects/project-01/plan-1f.webp" width="565" height="1522" alt="1층 평면도" loading="lazy" decoding="async">
+        <figcaption>1F plan</figcaption>
+      </figure>
+      <figure class="project-media project-media--portrait">
+        <img src="images/projects/project-01/plan-2f.webp" width="993" height="1522" alt="2층 평면도" loading="lazy" decoding="async">
+        <figcaption>2F plan</figcaption>
+      </figure>
+    </div>
+
+    <div class="project-grid project-grid--two reveal">
+      <figure class="project-media">
+        <img src="images/projects/project-01/interior-long-view.webp" width="745" height="241" alt="길게 열린 내부 광장 투시도" loading="lazy" decoding="async">
+        <figcaption>Interior square</figcaption>
+      </figure>
+      <figure class="project-media">
+        <img src="images/projects/project-01/interior-square.webp" width="401" height="265" alt="절벽을 향해 열린 내부 공간 투시도" loading="lazy" decoding="async">
+        <figcaption>Interior view</figcaption>
+      </figure>
+      <figure class="project-media">
+        <img src="images/projects/project-01/observatory.webp" width="1044" height="527" alt="도시를 조망하는 전망 공간" loading="lazy" decoding="async">
+        <figcaption>Observatory</figcaption>
+      </figure>
+      <figure class="project-media">
+        <img src="images/projects/project-01/entrance-view.webp" width="875" height="461" alt="절개지를 따라 이어지는 진입 공간" loading="lazy" decoding="async">
+        <figcaption>Entrance sequence</figcaption>
+      </figure>
+    </div>
+
+    <figure class="project-media project-media--wide reveal">
+      <img src="images/projects/project-01/cliff-view.webp" width="875" height="465" alt="절벽 위에서 바라본 건축물" loading="lazy" decoding="async">
+      <figcaption>View from the cliff</figcaption>
+    </figure>
+
+    <div class="project-grid project-grid--two reveal">
+      <figure class="project-media">
+        <img src="images/projects/project-01/circulation-axon.webp" width="874" height="1077" alt="램프와 주요 공간의 순환 체계 다이어그램" loading="lazy" decoding="async">
+        <figcaption>Circulation axonometric</figcaption>
+      </figure>
+      <figure class="project-media project-media--dark">
+        <img src="images/projects/project-01/site-model-perspective.webp" width="871" height="1077" alt="창신동 절개지와 건축물의 모형" loading="lazy" decoding="async">
+        <figcaption>Site model - perspective</figcaption>
+      </figure>
+      <figure class="project-media project-media--dark project-media--span-two">
+        <img src="images/projects/project-01/site-model-top.webp" width="872" height="1075" alt="창신동 절개지와 건축물 모형의 상부 모습" loading="lazy" decoding="async">
+        <figcaption>Site model - top view</figcaption>
+      </figure>
+    </div>
+  </template>
+
+
+  <template id="project2Template">
+    <section class="project-overview reveal">
+      <dl class="project-meta">
+        <div><dt>Year</dt><dd>2022</dd></div>
+        <div><dt>Location</dt><dd>Jongno-gu, Seoul</dd></div>
+        <div><dt>Program</dt><dd>Housing</dd></div>
+        <div><dt>Type</dt><dd>Individual Work</dd></div>
+      </dl>
+
+      <div class="project-intro">
+        <blockquote>
+          “정확하게 표현되지 못한 진실은 아프다고 말하지 못하지만, 정확하게 사랑받지 못하는 사람은 고통을 느낀다.”
+        </blockquote>
+        <p>
+          한국에 뿌리를 둔 설계자로서 애정과 존경을 담아 자연스럽게 익혀 온 한국성을 찾는다. 관찰과 실험은 오늘의 한국성을 정확히 바라보기 위한 과정이다.
+        </p>
+      </div>
+    </section>
+
+    <figure class="project-media project-media--hero reveal">
+      <img src="images/projects/project-02/front-view.webp" width="875" height="512" alt="부암동 경사지에 자리한 주택의 정면" loading="eager" decoding="async">
+      <figcaption>House on the slope of Buam-dong</figcaption>
+    </figure>
+
+    <section class="project-story reveal">
+      <div class="story-heading">
+        <span>01</span>
+        <h2>관찰</h2>
+      </div>
+      <div class="story-copy">
+        <p>
+          도시의 배경이 변하면서 주거의 형상도 도시한옥에서 불란서주택, 다가구주택과 아파트, 원룸으로 변해 왔다. 이 주거 유형이 모여 만든 군집의 풍경은 각 시대의 성격을 반영한다.
+        </p>
+        <p>
+          지금까지 변화한 집의 형상을 한 필지에 모으면 어떤 모습이 될까. 학습하고 경험한 주거의 풍경을 시대의 거울로 삼아 현재의 한국성으로 다시 구성한다.
+        </p>
+      </div>
+    </section>
+
+    <div class="project-grid project-grid--two reveal">
+      <figure class="project-media project-media--portrait">
+        <img src="images/projects/project-02/site-map.webp" width="923" height="1235" alt="부암동 인왕산 자락의 대상지 지도" loading="lazy" decoding="async">
+        <figcaption>Site map</figcaption>
+      </figure>
+      <figure class="project-media">
+        <img src="images/projects/project-02/street-elevation.webp" width="2150" height="1075" alt="부암동 경사지의 주택과 산세를 보여주는 입면" loading="lazy" decoding="async">
+        <figcaption>Street elevation</figcaption>
+      </figure>
+    </div>
+
+    <section class="project-story reveal">
+      <div class="story-heading">
+        <span>02</span>
+        <h2>실험</h2>
+      </div>
+      <div class="story-copy">
+        <p>
+          대상지는 인왕산과 북악산 사이의 경사지에 있다. 정돈되지 않은 길과 남아 있는 집터가 만드는 군집의 풍경에는 삶의 지형학이 축적돼 있다.
+        </p>
+        <p>
+          석축과 외부계단, 원룸·다가구주택·도시한옥·아파트를 재해석한 네 개의 덩어리를 조합한다. 서로 적절히 떨어진 공간을 직접 걸어 이동하도록 해 반기능적인 구성이 오히려 더 기능적인 삶을 만들게 한다.
+        </p>
+      </div>
+    </section>
+
+    <div class="project-grid project-grid--three reveal">
+      <figure class="project-media">
+        <img src="images/projects/project-02/axon-ground-floor.webp" width="419" height="402" alt="지상층 공간 조합 다이어그램" loading="lazy" decoding="async">
+        <figcaption>Ground floor axonometric</figcaption>
+      </figure>
+      <figure class="project-media">
+        <img src="images/projects/project-02/axon-first-floor.webp" width="421" height="405" alt="1층 공간 조합 다이어그램" loading="lazy" decoding="async">
+        <figcaption>First floor axonometric</figcaption>
+      </figure>
+      <figure class="project-media">
+        <img src="images/projects/project-02/axon-second-floor.webp" width="425" height="408" alt="2층 공간 조합 다이어그램" loading="lazy" decoding="async">
+        <figcaption>Second floor axonometric</figcaption>
+      </figure>
+    </div>
+
+    <div class="project-grid project-grid--two reveal">
+      <figure class="project-media">
+        <img src="images/projects/project-02/courtyard-view.webp" width="875" height="512" alt="마당과 외부계단을 바라본 주택 외부" loading="lazy" decoding="async">
+        <figcaption>Courtyard view</figcaption>
+      </figure>
+      <figure class="project-media project-media--span-two">
+        <img src="images/projects/project-02/elevations.webp" width="2151" height="1138" alt="주택의 좌측면도와 우측면도" loading="lazy" decoding="async">
+        <figcaption>Elevations</figcaption>
+      </figure>
+      <figure class="project-media">
+        <img src="images/projects/project-02/section-a.webp" width="2433" height="1212" alt="경사지 주택 단면 A" loading="lazy" decoding="async">
+        <figcaption>Section A</figcaption>
+      </figure>
+      <figure class="project-media">
+        <img src="images/projects/project-02/section-b.webp" width="2658" height="1305" alt="경사지 주택 단면 B" loading="lazy" decoding="async">
+        <figcaption>Section B</figcaption>
+      </figure>
+    </div>
+
+    <section class="project-story reveal">
+      <div class="story-heading">
+        <span>03</span>
+        <h2>결과</h2>
+      </div>
+      <div class="story-copy">
+        <p>
+          우리가 살아가는 풍경은 오랜 시간 속에서 옛것과 현재의 것이 함께 쌓여 만들어진다. 각 시대를 반영한 한국성이 모여 지금의 풍경을 만들고, 우리는 그 풍경을 기억한다.
+        </p>
+        <p>
+          경험한 한국성을 정확하게 기억하고 표현하며 오늘의 한국성을 드러낸다. 전통을 현대의 눈으로 바라보고 새롭게 창조해, 다음 세대가 받아들일 수 있는 유산을 만든다.
+        </p>
+      </div>
+    </section>
+
+    <div class="project-grid project-grid--two reveal">
+      <figure class="project-media">
+        <img src="images/projects/project-02/living-room-view.webp" width="954" height="596" alt="마당정원과 북악산을 바라보는 거실" loading="lazy" decoding="async">
+        <figcaption>Living room to courtyard</figcaption>
+      </figure>
+      <figure class="project-media">
+        <img src="images/projects/project-02/entrance-view.webp" width="975" height="594" alt="진입로에서 바라본 마당정원" loading="lazy" decoding="async">
+        <figcaption>Entrance to courtyard</figcaption>
+      </figure>
+      <figure class="project-media">
+        <img src="images/projects/project-02/kitchen-view.webp" width="532" height="426" alt="주방에서 바라본 마당정원" loading="lazy" decoding="async">
+        <figcaption>Kitchen to courtyard</figcaption>
+      </figure>
+      <figure class="project-media">
+        <img src="images/projects/project-02/bedroom-view.webp" width="532" height="426" alt="북악산을 조망하는 2층 거실" loading="lazy" decoding="async">
+        <figcaption>Second floor view</figcaption>
+      </figure>
+    </div>
+  </template>
+
+
+  <template id="project3Template">
+    <section class="project-overview reveal">
+      <dl class="project-meta">
+        <div><dt>Year</dt><dd>2022</dd></div>
+        <div><dt>Location</dt><dd>Anyang-si, Gyeonggi-do</dd></div>
+        <div><dt>Program</dt><dd>Cultural, Public</dd></div>
+        <div><dt>Type</dt><dd>Individual Work</dd></div>
+      </dl>
+
+      <div class="project-intro">
+        <p>
+          1960년대 산업시설인 옛 유유산업 안양공장은 문화공간으로 전환돼 김중업건축박물관으로 사용되고 있다. 시대의 요구에 따라 보존되고 확장되며 변형되는 김중업의 건축은 끊임없이 변화하는 유기체다.
+        </p>
+        <p>
+          김중업 탄생 100주년을 맞아 대지 위에 새로운 레이어가 될 도서관을 제안한다. 오늘날 그의 건축 유산이 어떻게 수명을 이어가고 활용될 수 있는지 질문한다.
+        </p>
+      </div>
+    </section>
+
+    <figure class="project-media project-media--hero project-media--dark reveal">
+      <img src="images/projects/project-03/study-model.webp" width="874" height="1233" alt="김중업 건축박물관과 도서관의 적층 모형" loading="eager" decoding="async">
+      <figcaption>Study model</figcaption>
+    </figure>
+
+    <section class="project-story reveal">
+      <div class="story-heading">
+        <span>01</span>
+        <h2>병치와 증식</h2>
+      </div>
+      <div class="story-copy">
+        <p>
+          기하학적 단순성을 가지면서 기능에 따라 계속 분화하는 김중업의 건축 언어를 도서관 프로그램으로 표현한다. 건축을 하나의 유형학적 텍스트로 보고, 독립된 요소를 병치해 새로운 전체를 만든다.
+        </p>
+        <p>
+          각 요소가 자율성을 갖도록 트러스가 지지하는 대공간 안에 자유로운 볼륨을 배치한다. 공간을 조금씩 엇갈리게 두어 얕은 시선과 깊은 시선이 충돌하도록 하고, 각 기능의 독립적인 동선을 유지한다.
+        </p>
+      </div>
+    </section>
+
+    <div class="project-grid project-grid--two reveal">
+      <figure class="project-media">
+        <img src="images/projects/project-03/main-hall-view.webp" width="874" height="512" alt="도서관의 개방된 중앙 홀" loading="lazy" decoding="async">
+        <figcaption>Main hall</figcaption>
+      </figure>
+      <figure class="project-media">
+        <img src="images/projects/project-03/atrium-view.webp" width="875" height="517" alt="서로 다른 레벨과 공간이 교차하는 도서관 내부" loading="lazy" decoding="async">
+        <figcaption>Juxtaposed atrium</figcaption>
+      </figure>
+    </div>
+
+    <section class="project-story reveal">
+      <div class="story-heading">
+        <span>02</span>
+        <h2>열림과 닫힘</h2>
+      </div>
+      <div class="story-copy">
+        <p>
+          도서관은 열린 공간과 닫힌 공간이 적절히 조화를 이뤄야 한다. 그리드의 켜와 레이어에 따라 볼륨의 밀도를 조절하고, 기능이 서로 얽히지 않으면서도 시선과 움직임이 교차하도록 구성한다.
+        </p>
+      </div>
+    </section>
+
+    <div class="project-grid project-grid--two reveal">
+      <figure class="project-media project-media--portrait">
+        <img src="images/projects/project-03/ground-floor-plan.webp" width="477" height="660" alt="김중업 Memorial 도서관 1층 평면도" loading="lazy" decoding="async">
+        <figcaption>Ground floor plan</figcaption>
+      </figure>
+      <figure class="project-media project-media--portrait">
+        <img src="images/projects/project-03/first-floor-plan.webp" width="437" height="631" alt="김중업 Memorial 도서관 2층 평면도" loading="lazy" decoding="async">
+        <figcaption>First floor plan</figcaption>
+      </figure>
+      <figure class="project-media project-media--wide project-media--span-two">
+        <img src="images/projects/project-03/section.webp" width="2151" height="1522" alt="트러스와 내부 볼륨을 보여주는 도서관 장단면" loading="lazy" decoding="async">
+        <figcaption>Long section</figcaption>
+      </figure>
+    </div>
+  </template>
+
+
+
+  <!-- =========================
        INFO POPUP
   ========================== -->
 
   <div
     class="info-overlay"
     id="infoOverlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="infoPopupName"
+    aria-hidden="true"
   >
 
     <div class="info-popup">
@@ -165,16 +542,18 @@
 
       <div class="info-popup-header">
 
-        <h2 class="info-popup-name">
+        <h2 class="info-popup-name" id="infoPopupName">
           Kim Hyeju
         </h2>
 
-        <span
+        <button
           class="info-close"
           id="infoClose"
+          type="button"
+          aria-label="프로필 정보 닫기"
         >
           (close)
-        </span>
+        </button>
 
       </div>
 
@@ -244,20 +623,19 @@
       1: {
         title: "Graduation Project",
         description: "흔적에서 현상으로 / 2023",
-        images: [
-          "images/project1-1.jpg",
-          "images/project1-2.jpg"
-        ]
+        templateId: "project1Template"
       },
 
       2: {
+        title: "Competition Project",
+        description: "정확한 한국성의 실험 / 2022",
+        templateId: "project2Template"
+      },
+
+      3: {
         title: "Academic Project",
-        description: "Kim Library / 2022",
-        images: [
-          "images/project2-1.jpg",
-          "images/project2-2.jpg",
-          "images/project2-3.jpg"
-        ]
+        description: "김중업 Memorial 도서관 / 2022",
+        templateId: "project3Template"
       }
 
     };
@@ -280,11 +658,15 @@
     const projectDescription =
       document.getElementById("projectDescription");
 
-    const projectImages =
-      document.getElementById("projectImages");
+    const projectArticle =
+      document.getElementById("projectArticle");
 
     const closeButton =
       document.getElementById("closeButton");
+
+    let revealObserver;
+    let activeProjectTrigger;
+    let previousInfoFocus;
 
 
 
@@ -292,7 +674,7 @@
        OPEN PROJECT
     ========================== */
 
-    function openProject(projectNumber) {
+    function openProject(projectNumber, trigger) {
 
       const project =
         projects[projectNumber];
@@ -310,27 +692,67 @@
         project.description;
 
 
-      projectImages.innerHTML = "";
+      const template =
+        document.getElementById(project.templateId);
 
-
-      project.images.forEach(function(imagePath) {
-
-        const image =
-          document.createElement("img");
-
-        image.src = imagePath;
-
-        image.alt = project.title;
-
-        projectImages.appendChild(image);
-
-      });
+      projectArticle.replaceChildren(
+        template.content.cloneNode(true)
+      );
 
 
       projectViewer.classList.add("active");
+      activeProjectTrigger = trigger;
 
 
       projectViewer.scrollTop = 0;
+
+      closeButton.focus();
+
+      window.requestAnimationFrame(function() {
+        observeProjectContent();
+      });
+
+    }
+
+
+
+    function observeProjectContent() {
+
+      if (revealObserver) {
+        revealObserver.disconnect();
+      }
+
+      const revealItems =
+        projectArticle.querySelectorAll(".reveal");
+
+      if (
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        revealItems.forEach(function(item) {
+          item.classList.add("is-visible");
+        });
+        return;
+      }
+
+      revealObserver = new IntersectionObserver(
+        function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          root: projectViewer,
+          rootMargin: "0px 0px -8% 0px",
+          threshold: 0.08
+        }
+      );
+
+      revealItems.forEach(function(item) {
+        revealObserver.observe(item);
+      });
 
     }
 
@@ -344,9 +766,18 @@
 
       projectViewer.classList.remove("active");
 
-      projectImages.innerHTML = "";
+      projectArticle.innerHTML = "";
+
+      if (revealObserver) {
+        revealObserver.disconnect();
+      }
 
       projectViewer.scrollTop = 0;
+
+      if (activeProjectTrigger) {
+        activeProjectTrigger.focus();
+        activeProjectTrigger = null;
+      }
 
     }
 
@@ -363,7 +794,7 @@
         const projectNumber =
           this.dataset.project;
 
-        openProject(projectNumber);
+        openProject(projectNumber, this);
 
       });
 
@@ -396,25 +827,44 @@
       document.getElementById("infoClose");
 
 
+    function openInfo() {
+
+      previousInfoFocus = document.activeElement;
+
+      infoOverlay.classList.add("active");
+      infoOverlay.setAttribute("aria-hidden", "false");
+      infoButton.setAttribute("aria-expanded", "true");
+
+      infoClose.focus();
+
+    }
+
+
+    function closeInfo() {
+
+      infoOverlay.classList.remove("active");
+      infoOverlay.setAttribute("aria-hidden", "true");
+      infoButton.setAttribute("aria-expanded", "false");
+
+      if (previousInfoFocus) {
+        previousInfoFocus.focus();
+        previousInfoFocus = null;
+      }
+
+    }
+
+
 
     infoButton.addEventListener(
       "click",
-      function() {
-
-        infoOverlay.classList.add("active");
-
-      }
+      openInfo
     );
 
 
 
     infoClose.addEventListener(
       "click",
-      function() {
-
-        infoOverlay.classList.remove("active");
-
-      }
+      closeInfo
     );
 
 
@@ -431,8 +881,21 @@
           event.target === infoOverlay
         ) {
 
-          infoOverlay.classList.remove("active");
+          closeInfo();
 
+        }
+
+      }
+    );
+
+
+    infoOverlay.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Tab") {
+          event.preventDefault();
+          infoClose.focus();
         }
 
       }
@@ -450,9 +913,11 @@
 
         if (event.key === "Escape") {
 
-          closeProject();
-
-          infoOverlay.classList.remove("active");
+          if (infoOverlay.classList.contains("active")) {
+            closeInfo();
+          } else if (projectViewer.classList.contains("active")) {
+            closeProject();
+          }
 
         }
 
