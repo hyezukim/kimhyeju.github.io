@@ -14,28 +14,515 @@
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
   >
 
-  <link rel="stylesheet" href="style.css">
+  <style>
+
+    /* =========================
+       BASIC
+    ========================= */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      font-family: "Pretendard", sans-serif;
+      background: #fff;
+      color: #000;
+      overflow: hidden;
+    }
+
+
+    /* =========================
+       INFO BUTTON
+    ========================= */
+
+    .info-button {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+
+      width: 24px;
+      height: 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid #ccc;
+      background: #fff;
+
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1;
+
+      cursor: pointer;
+
+      z-index: 1000;
+    }
+
+    .info-button:hover {
+      background: #f5f5f5;
+    }
+
+
+    /* =========================
+       MAIN LAYOUT
+    ========================= */
+
+    .main {
+      width: 100%;
+      height: 100vh;
+
+      display: grid;
+      grid-template-columns: 50% 50%;
+    }
+
+
+    /* =========================
+       LEFT PROJECT LIST
+    ========================= */
+
+    .project-list {
+      width: 100%;
+      height: 100vh;
+
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      padding: 24px;
+    }
+
+    /* 스크롤바 숨기기 */
+
+    .project-list::-webkit-scrollbar {
+      display: none;
+    }
+
+    .project-list {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+
+    .project-item {
+      width: 100%;
+
+      display: grid;
+      grid-template-columns: 50px 1fr 70px;
+
+      align-items: start;
+
+      padding: 8px 0;
+
+      border-bottom: 0;
+
+      cursor: pointer;
+
+      font-size: 15px;
+      line-height: 1.35;
+
+      transition: opacity 0.2s ease;
+    }
+
+    .project-item:hover {
+      opacity: 0.5;
+    }
+
+
+    .project-number {
+      font-size: 15px;
+    }
+
+
+    .project-name {
+      font-size: 15px;
+    }
+
+
+    .project-year {
+      text-align: right;
+      font-size: 15px;
+    }
+
+
+    /* =========================
+       RIGHT PROJECT VIEWER
+    ========================= */
+
+    .project-viewer {
+      position: relative;
+
+      width: 100%;
+      height: 100vh;
+
+      background: #fff;
+
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      display: none;
+    }
+
+    .project-viewer.active {
+      display: block;
+    }
+
+
+    /* 스크롤바 숨기기 */
+
+    .project-viewer::-webkit-scrollbar {
+      display: none;
+    }
+
+    .project-viewer {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+
+    /* =========================
+       CLOSE BUTTON
+    ========================= */
+
+    .close-button {
+      position: fixed;
+
+      top: 16px;
+      right: calc(50% + 16px);
+
+      width: 24px;
+      height: 24px;
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid #ccc;
+      background: #fff;
+
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1;
+
+      cursor: pointer;
+
+      z-index: 900;
+    }
+
+    .project-viewer.active + .close-button {
+      display: flex;
+    }
+
+
+    /* =========================
+       PROJECT CONTENT
+    ========================= */
+
+    .project-content {
+      width: 100%;
+      min-height: 100%;
+
+      padding: 70px 40px 80px;
+    }
+
+
+    .project-header {
+      margin-bottom: 50px;
+    }
+
+
+    .project-title {
+      margin: 0 0 4px;
+
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+
+    .project-description {
+      margin: 0;
+
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+
+    /* =========================
+       PROJECT IMAGES
+    ========================= */
+
+    .project-images {
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+
+      gap: 50px;
+    }
+
+
+    .project-images img {
+      display: block;
+
+      width: 100%;
+      height: auto;
+
+      object-fit: contain;
+    }
+
+
+    /* =========================
+       INFO POPUP
+    ========================= */
+
+    .info-overlay {
+      position: fixed;
+
+      inset: 0;
+
+      display: none;
+
+      align-items: flex-start;
+      justify-content: flex-end;
+
+      background: rgba(255, 255, 255, 0.45);
+
+      z-index: 2000;
+    }
+
+    .info-overlay.active {
+      display: flex;
+    }
+
+
+    .info-popup {
+      width: 50%;
+      min-height: 100vh;
+
+      padding: 24px;
+
+      background: #fff;
+
+      border-left: 1px solid #ddd;
+
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+
+    .info-popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      margin-bottom: 30px;
+    }
+
+
+    .info-popup-name {
+      margin: 0;
+
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+
+    .info-close {
+      font-size: 13px;
+
+      cursor: pointer;
+
+      text-decoration: none;
+    }
+
+
+    .info-section {
+      margin-bottom: 40px;
+    }
+
+
+    .info-section-title {
+      margin-bottom: 18px;
+
+      color: #aaa;
+
+      font-size: 13px;
+      font-weight: 400;
+    }
+
+
+    .info-section p {
+      margin: 0 0 20px;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 768px) {
+
+      body {
+        overflow: auto;
+      }
+
+
+      .main {
+        display: block;
+
+        height: auto;
+        min-height: 100vh;
+      }
+
+
+      .project-list {
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+
+        padding: 20px;
+      }
+
+
+      .project-item {
+        grid-template-columns: 40px 1fr 55px;
+
+        padding: 8px 0;
+
+        font-size: 14px;
+      }
+
+
+      .project-number,
+      .project-name,
+      .project-year {
+        font-size: 14px;
+      }
+
+
+      .project-viewer {
+        position: fixed;
+
+        inset: 0;
+
+        width: 100%;
+        height: 100vh;
+
+        z-index: 1500;
+      }
+
+
+      .project-content {
+        padding: 60px 20px 50px;
+      }
+
+
+      .project-header {
+        margin-bottom: 30px;
+      }
+
+
+      .project-title {
+        font-size: 17px;
+      }
+
+
+      .project-description {
+        font-size: 14px;
+      }
+
+
+      .project-images {
+        gap: 30px;
+      }
+
+
+      .close-button {
+        position: fixed;
+
+        top: 16px;
+        right: 16px;
+
+        z-index: 1800;
+      }
+
+
+      .info-button {
+        top: 16px;
+        right: 16px;
+      }
+
+
+      .info-popup {
+        width: 100%;
+        min-height: 100vh;
+
+        padding: 20px;
+
+        border-left: none;
+      }
+
+    }
+
+  </style>
 </head>
+
 
 <body>
 
-  <!-- ========================================
+
+  <!-- =========================
+       INFO BUTTON
+  ========================== -->
+
+  <button
+    class="info-button"
+    id="infoButton"
+    type="button"
+  >
+    i
+  </button>
+
+
+
+  <!-- =========================
        MAIN
-  ========================================= -->
+  ========================== -->
 
-  <main class="site">
+  <main class="main">
 
-    <!-- LEFT : PROJECT LIST -->
+
+    <!-- =========================
+         LEFT : PROJECT LIST
+    ========================== -->
+
     <section class="project-list">
 
-      <div class="project-item"
-           onclick="openProject('project1')">
 
-        <div class="project-number">01</div>
+      <!-- PROJECT 01 -->
 
-        <div class="project-title">
-          <span>Graduation Project</span>
-          <span>흔적에서 현상으로</span>
+      <div
+        class="project-item"
+        data-project="1"
+      >
+
+        <div class="project-number">
+          01
+        </div>
+
+        <div class="project-name">
+          Graduation Project<br>
+          흔적에서 현상으로
         </div>
 
         <div class="project-year">
@@ -45,14 +532,21 @@
       </div>
 
 
-      <div class="project-item"
-           onclick="openProject('project2')">
 
-        <div class="project-number">02</div>
+      <!-- PROJECT 02 -->
 
-        <div class="project-title">
-          <span>Academic Project</span>
-          <span>Kim Library</span>
+      <div
+        class="project-item"
+        data-project="2"
+      >
+
+        <div class="project-number">
+          02
+        </div>
+
+        <div class="project-name">
+          Academic Project<br>
+          Kim Library
         </div>
 
         <div class="project-year">
@@ -62,146 +556,132 @@
       </div>
 
 
-      <!--
-      프로젝트를 추가하고 싶다면
-      아래 형식으로 계속 추가하면 됩니다.
-
-      <div class="project-item"
-           onclick="openProject('project3')">
-
-        <div class="project-number">03</div>
-
-        <div class="project-title">
-          <span>Project Name</span>
-          <span>Project Subtitle</span>
-        </div>
-
-        <div class="project-year">
-          2024
-        </div>
-
-      </div>
-      -->
-
     </section>
 
 
-    <!-- ========================================
-         RIGHT : PROJECT DETAIL
-    ========================================= -->
 
-    <section class="project-panel" id="projectPanel">
+    <!-- =========================
+         RIGHT : PROJECT VIEWER
+    ========================== -->
 
-      <!-- PANEL HEADER -->
-      <div class="panel-header">
+    <section
+      class="project-viewer"
+      id="projectViewer"
+    >
 
-        <div class="panel-title">
-          <div id="panelProjectTitle"></div>
-          <div id="panelProjectSubtitle"></div>
-          <div id="panelProjectYear"></div>
+      <div class="project-content">
+
+
+        <div class="project-header">
+
+          <h1
+            class="project-title"
+            id="projectTitle"
+          ></h1>
+
+          <p
+            class="project-description"
+            id="projectDescription"
+          ></p>
+
         </div>
 
-        <button
-          class="panel-close"
-          onclick="closeProject()"
-          aria-label="Close"
-        >
-          ×
-        </button>
 
-      </div>
-
-
-      <!-- PANEL CONTENT -->
-      <div class="panel-content">
-
-        <!-- PROJECT IMAGES -->
         <div
           class="project-images"
           id="projectImages"
         ></div>
 
 
-        <!-- PROJECT DESCRIPTION -->
-        <div
-          class="project-description"
-          id="projectDescription"
-        ></div>
-
       </div>
 
     </section>
+
+
+
+    <!-- CLOSE BUTTON -->
+
+    <button
+      class="close-button"
+      id="closeButton"
+      type="button"
+    >
+      ×
+    </button>
+
 
   </main>
 
 
 
-  <!-- ========================================
-       INFO BUTTON
-  ========================================= -->
-
-  <button
-    class="info-button"
-    onclick="openInfo()"
-    aria-label="Information"
-  >
-    i
-  </button>
-
-
-
-  <!-- ========================================
-       INFO PANEL
-  ========================================= -->
+  <!-- =========================
+       INFO POPUP
+  ========================== -->
 
   <div
-    class="info-panel"
-    id="infoPanel"
-    onclick="closeInfoBackground(event)"
+    class="info-overlay"
+    id="infoOverlay"
   >
 
-    <div class="info-box">
-
-      <button
-        class="info-close"
-        onclick="closeInfo()"
-        aria-label="Close"
-      >
-        ×
-      </button>
+    <div class="info-popup">
 
 
-      <div class="info-name">
-        Kim Hyeju
-      </div>
+      <div class="info-popup-header">
 
+        <h2 class="info-popup-name">
+          Kim Hyeju
+        </h2>
 
-      <div class="info-section">
-
-        <div class="info-label">
-          contact
-        </div>
-
-        <div class="info-text">
-          hyezukim@gmail.com
-        </div>
+        <span
+          class="info-close"
+          id="infoClose"
+        >
+          (close)
+        </span>
 
       </div>
 
 
 
+
+      <!-- PROFESSION -->
+
       <div class="info-section">
 
-        <div class="info-label">
+        <div class="info-section-title">
           profession
         </div>
 
-        <div class="info-text">
-
+        <p>
           Architecture<br>
-          Seoul, Korea
+          Seoul, KR
+        </p>
 
+
+        <p>
+          Min Workshop<br>
+          Architectural Designer (2023- )
+        </p>
+
+      </div>
+
+
+
+      <!-- CONTACT -->
+
+      <div class="info-section">
+
+        <div class="info-section-title">
+          contact
         </div>
+
+        <p>
+          kimhyeju.com
+        </p>
+
+          <p>
+          hyezukim@gmail.com
+        </p>
 
       </div>
 
@@ -212,235 +692,220 @@
 
 
 
-  <!-- ========================================
-       PROJECT DATA + JAVASCRIPT
-  ========================================= -->
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
 
   <script>
 
+    /* =========================
+       PROJECT DATA
+    ========================== */
+
     const projects = {
 
-      /* ======================================
-         PROJECT 01
-      ====================================== */
-
-      project1: {
-
+      1: {
         title: "Graduation Project",
-
-        subtitle: "흔적에서 현상으로",
-
-        year: "2023",
-
+        description: "흔적에서 현상으로 / 2023",
         images: [
           "images/project1-1.jpg",
           "images/project1-2.jpg"
-        ],
-
-        description: `
-          <p>
-            흔적에서 현상으로
-          </p>
-
-          <p>
-            기존의 흔적과 장소의 조건을 관찰하고,
-            그것이 새로운 공간적 현상으로 이어지는
-            과정을 탐구한 졸업설계 프로젝트입니다.
-          </p>
-        `
-
+        ]
       },
 
-
-      /* ======================================
-         PROJECT 02
-      ====================================== */
-
-      project2: {
-
+      2: {
         title: "Academic Project",
-
-        subtitle: "Kim Library",
-
-        year: "2022",
-
+        description: "Kim Library / 2022",
         images: [
           "images/project2-1.jpg",
           "images/project2-2.jpg",
           "images/project2-3.jpg"
-        ],
-
-        description: `
-          <p>
-            Kim Library
-          </p>
-
-          <p>
-            빛과 구조, 프로그램의 관계를 중심으로
-            공간의 경험을 탐구한 학부 설계 프로젝트입니다.
-          </p>
-        `
-
+        ]
       }
 
     };
 
 
 
-    /* ========================================
+    /* =========================
+       ELEMENTS
+    ========================== */
+
+    const projectItems =
+      document.querySelectorAll(".project-item");
+
+    const projectViewer =
+      document.getElementById("projectViewer");
+
+    const projectTitle =
+      document.getElementById("projectTitle");
+
+    const projectDescription =
+      document.getElementById("projectDescription");
+
+    const projectImages =
+      document.getElementById("projectImages");
+
+    const closeButton =
+      document.getElementById("closeButton");
+
+
+
+    /* =========================
        OPEN PROJECT
-    ======================================== */
+    ========================== */
 
-    function openProject(projectName) {
+    function openProject(projectNumber) {
 
-      const project = projects[projectName];
+      const project =
+        projects[projectNumber];
 
       if (!project) {
         return;
       }
 
 
-      /* 프로젝트 정보 */
-
-      document.getElementById(
-        "panelProjectTitle"
-      ).textContent = project.title;
+      projectTitle.textContent =
+        project.title;
 
 
-      document.getElementById(
-        "panelProjectSubtitle"
-      ).textContent = project.subtitle;
+      projectDescription.textContent =
+        project.description;
 
 
-      document.getElementById(
-        "panelProjectYear"
-      ).textContent = project.year;
+      projectImages.innerHTML = "";
 
 
+      project.images.forEach(function(imagePath) {
 
-      /* 이미지 */
+        const image =
+          document.createElement("img");
 
-      const imageContainer =
-        document.getElementById("projectImages");
+        image.src = imagePath;
 
-      imageContainer.innerHTML = "";
+        image.alt = project.title;
 
-
-      project.images.forEach(function(imageSrc) {
-
-        const image = document.createElement("img");
-
-        image.src = imageSrc;
-
-        image.alt =
-          project.title + " - " + project.subtitle;
-
-        image.loading = "lazy";
-
-        imageContainer.appendChild(image);
+        projectImages.appendChild(image);
 
       });
 
 
-
-      /* 설명 */
-
-      document.getElementById(
-        "projectDescription"
-      ).innerHTML = project.description;
+      projectViewer.classList.add("active");
 
 
-
-      /* 오른쪽 패널 열기 */
-
-      document.body.classList.add(
-        "project-open"
-      );
-
-
-      document.getElementById(
-        "projectPanel"
-      ).classList.add("active");
-
-
-      /* 오른쪽 패널 스크롤 맨 위 */
-
-      document.getElementById(
-        "projectPanel"
-      ).scrollTop = 0;
+      projectViewer.scrollTop = 0;
 
     }
 
 
 
-    /* ========================================
+    /* =========================
        CLOSE PROJECT
-    ======================================== */
+    ========================== */
 
     function closeProject() {
 
-      document.body.classList.remove(
-        "project-open"
-      );
+      projectViewer.classList.remove("active");
 
+      projectImages.innerHTML = "";
 
-      document.getElementById(
-        "projectPanel"
-      ).classList.remove("active");
+      projectViewer.scrollTop = 0;
 
     }
 
 
 
-    /* ========================================
-       INFO OPEN
-    ======================================== */
+    /* =========================
+       PROJECT CLICK
+    ========================== */
 
-    function openInfo() {
+    projectItems.forEach(function(item) {
 
-      document
-        .getElementById("infoPanel")
-        .classList.add("active");
+      item.addEventListener("click", function() {
 
-    }
+        const projectNumber =
+          this.dataset.project;
 
+        openProject(projectNumber);
 
+      });
 
-    /* ========================================
-       INFO CLOSE
-    ======================================== */
-
-    function closeInfo() {
-
-      document
-        .getElementById("infoPanel")
-        .classList.remove("active");
-
-    }
+    });
 
 
 
-    /* ========================================
-       INFO BACKGROUND CLICK
-    ======================================== */
+    /* =========================
+       CLOSE BUTTON
+    ========================== */
 
-    function closeInfoBackground(event) {
+    closeButton.addEventListener(
+      "click",
+      closeProject
+    );
 
-      if (
-        event.target.id === "infoPanel"
-      ) {
 
-        closeInfo();
+
+    /* =========================
+       INFO POPUP
+    ========================== */
+
+    const infoButton =
+      document.getElementById("infoButton");
+
+    const infoOverlay =
+      document.getElementById("infoOverlay");
+
+    const infoClose =
+      document.getElementById("infoClose");
+
+
+
+    infoButton.addEventListener(
+      "click",
+      function() {
+
+        infoOverlay.classList.add("active");
 
       }
-
-    }
-
+    );
 
 
-    /* ========================================
+
+    infoClose.addEventListener(
+      "click",
+      function() {
+
+        infoOverlay.classList.remove("active");
+
+      }
+    );
+
+
+
+    /* =========================
+       CLICK OUTSIDE INFO POPUP
+    ========================== */
+
+    infoOverlay.addEventListener(
+      "click",
+      function(event) {
+
+        if (
+          event.target === infoOverlay
+        ) {
+
+          infoOverlay.classList.remove("active");
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================
        ESC KEY
-    ======================================== */
+    ========================== */
 
     document.addEventListener(
       "keydown",
@@ -450,7 +915,7 @@
 
           closeProject();
 
-          closeInfo();
+          infoOverlay.classList.remove("active");
 
         }
 
@@ -458,6 +923,7 @@
     );
 
   </script>
+
 
 </body>
 </html>
