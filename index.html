@@ -1,69 +1,479 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Kim Hyeju</title>
 
   <!-- Pretendard -->
-  <link rel="stylesheet" as="style" crossorigin
-  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+  <link
+    rel="stylesheet"
+    as="style"
+    crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+  >
 
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- INFO BUTTON -->
-  <button class="info-btn" onclick="toggleInfo()">i</button>
+  <!-- ========================================
+       MAIN
+  ========================================= -->
 
-  <!-- INFO POPUP -->
-  <div class="info-popup" id="infoPopup">
-    @kim.hyeju<br>
+  <main class="site">
 
-    Architecture Portfolio<br>
-    Seoul based<br><br>
+    <!-- LEFT : PROJECT LIST -->
+    <section class="project-list">
 
-    Contact
-    hyezukim@gmail.com
-  </div>
+      <div class="project-item"
+           onclick="openProject('project1')">
 
-  <div class="container">
+        <div class="project-number">01</div>
 
-    <!-- LEFT LIST -->
-    <div class="project-list">
-
-      <a href="project1.html"
-         class="project-item"
-         data-image="images/project1-1.jpg">
-
-        <span class="number">01</span>
-
-        <div class="text">
-          2023 Graduation Project 흔적에서 현상으로<br>
+        <div class="project-title">
+          <span>Graduation Project</span>
+          <span>흔적에서 현상으로</span>
         </div>
-      </a>
 
-      <a href="project2.html"
-         class="project-item"
-         data-image="images/project2-1.jpg">
-
-        <span class="number">02</span>
-
-        <div class="text">
-          2022 Academic Project Kim Library
+        <div class="project-year">
+          2023
         </div>
-      </a>
+
+      </div>
+
+
+      <div class="project-item"
+           onclick="openProject('project2')">
+
+        <div class="project-number">02</div>
+
+        <div class="project-title">
+          <span>Academic Project</span>
+          <span>Kim Library</span>
+        </div>
+
+        <div class="project-year">
+          2022
+        </div>
+
+      </div>
+
+
+      <!--
+      프로젝트를 추가하고 싶다면
+      아래 형식으로 계속 추가하면 됩니다.
+
+      <div class="project-item"
+           onclick="openProject('project3')">
+
+        <div class="project-number">03</div>
+
+        <div class="project-title">
+          <span>Project Name</span>
+          <span>Project Subtitle</span>
+        </div>
+
+        <div class="project-year">
+          2024
+        </div>
+
+      </div>
+      -->
+
+    </section>
+
+
+    <!-- ========================================
+         RIGHT : PROJECT DETAIL
+    ========================================= -->
+
+    <section class="project-panel" id="projectPanel">
+
+      <!-- PANEL HEADER -->
+      <div class="panel-header">
+
+        <div class="panel-title">
+          <div id="panelProjectTitle"></div>
+          <div id="panelProjectSubtitle"></div>
+          <div id="panelProjectYear"></div>
+        </div>
+
+        <button
+          class="panel-close"
+          onclick="closeProject()"
+          aria-label="Close"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <!-- PANEL CONTENT -->
+      <div class="panel-content">
+
+        <!-- PROJECT IMAGES -->
+        <div
+          class="project-images"
+          id="projectImages"
+        ></div>
+
+
+        <!-- PROJECT DESCRIPTION -->
+        <div
+          class="project-description"
+          id="projectDescription"
+        ></div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- ========================================
+       INFO BUTTON
+  ========================================= -->
+
+  <button
+    class="info-button"
+    onclick="openInfo()"
+    aria-label="Information"
+  >
+    i
+  </button>
+
+
+
+  <!-- ========================================
+       INFO PANEL
+  ========================================= -->
+
+  <div
+    class="info-panel"
+    id="infoPanel"
+    onclick="closeInfoBackground(event)"
+  >
+
+    <div class="info-box">
+
+      <button
+        class="info-close"
+        onclick="closeInfo()"
+        aria-label="Close"
+      >
+        ×
+      </button>
+
+
+      <div class="info-name">
+        Kim Hyeju
+      </div>
+
+
+      <div class="info-section">
+
+        <div class="info-label">
+          contact
+        </div>
+
+        <div class="info-text">
+          kimhyeju.arch@gmail.com
+        </div>
+
+      </div>
+
+
+      <div class="info-section">
+
+        <div class="info-label">
+          education
+        </div>
+
+        <div class="info-text">
+
+          Yonsei University<br>
+          Bachelor of Architecture<br>
+          2016 – 2023
+
+        </div>
+
+      </div>
+
+
+      <div class="info-section">
+
+        <div class="info-label">
+          profession
+        </div>
+
+        <div class="info-text">
+
+          Architecture<br>
+          Seoul, Korea
+
+        </div>
+
+      </div>
+
 
     </div>
 
   </div>
 
+
+
+  <!-- ========================================
+       PROJECT DATA + JAVASCRIPT
+  ========================================= -->
+
   <script>
-  function toggleInfo() {
-    document.getElementById('infoPopup').classList.toggle('show');
-  }
-</script>
+
+    const projects = {
+
+      /* ======================================
+         PROJECT 01
+      ====================================== */
+
+      project1: {
+
+        title: "Graduation Project",
+
+        subtitle: "흔적에서 현상으로",
+
+        year: "2023",
+
+        images: [
+          "images/project1-1.jpg",
+          "images/project1-2.jpg"
+        ],
+
+        description: `
+          <p>
+            흔적에서 현상으로
+          </p>
+
+          <p>
+            기존의 흔적과 장소의 조건을 관찰하고,
+            그것이 새로운 공간적 현상으로 이어지는
+            과정을 탐구한 졸업설계 프로젝트입니다.
+          </p>
+        `
+
+      },
+
+
+      /* ======================================
+         PROJECT 02
+      ====================================== */
+
+      project2: {
+
+        title: "Academic Project",
+
+        subtitle: "Kim Library",
+
+        year: "2022",
+
+        images: [
+          "images/project2-1.jpg",
+          "images/project2-2.jpg",
+          "images/project2-3.jpg"
+        ],
+
+        description: `
+          <p>
+            Kim Library
+          </p>
+
+          <p>
+            빛과 구조, 프로그램의 관계를 중심으로
+            공간의 경험을 탐구한 학부 설계 프로젝트입니다.
+          </p>
+        `
+
+      }
+
+    };
+
+
+
+    /* ========================================
+       OPEN PROJECT
+    ======================================== */
+
+    function openProject(projectName) {
+
+      const project = projects[projectName];
+
+      if (!project) {
+        return;
+      }
+
+
+      /* 프로젝트 정보 */
+
+      document.getElementById(
+        "panelProjectTitle"
+      ).textContent = project.title;
+
+
+      document.getElementById(
+        "panelProjectSubtitle"
+      ).textContent = project.subtitle;
+
+
+      document.getElementById(
+        "panelProjectYear"
+      ).textContent = project.year;
+
+
+
+      /* 이미지 */
+
+      const imageContainer =
+        document.getElementById("projectImages");
+
+      imageContainer.innerHTML = "";
+
+
+      project.images.forEach(function(imageSrc) {
+
+        const image = document.createElement("img");
+
+        image.src = imageSrc;
+
+        image.alt =
+          project.title + " - " + project.subtitle;
+
+        image.loading = "lazy";
+
+        imageContainer.appendChild(image);
+
+      });
+
+
+
+      /* 설명 */
+
+      document.getElementById(
+        "projectDescription"
+      ).innerHTML = project.description;
+
+
+
+      /* 오른쪽 패널 열기 */
+
+      document.body.classList.add(
+        "project-open"
+      );
+
+
+      document.getElementById(
+        "projectPanel"
+      ).classList.add("active");
+
+
+      /* 오른쪽 패널 스크롤 맨 위 */
+
+      document.getElementById(
+        "projectPanel"
+      ).scrollTop = 0;
+
+    }
+
+
+
+    /* ========================================
+       CLOSE PROJECT
+    ======================================== */
+
+    function closeProject() {
+
+      document.body.classList.remove(
+        "project-open"
+      );
+
+
+      document.getElementById(
+        "projectPanel"
+      ).classList.remove("active");
+
+    }
+
+
+
+    /* ========================================
+       INFO OPEN
+    ======================================== */
+
+    function openInfo() {
+
+      document
+        .getElementById("infoPanel")
+        .classList.add("active");
+
+    }
+
+
+
+    /* ========================================
+       INFO CLOSE
+    ======================================== */
+
+    function closeInfo() {
+
+      document
+        .getElementById("infoPanel")
+        .classList.remove("active");
+
+    }
+
+
+
+    /* ========================================
+       INFO BACKGROUND CLICK
+    ======================================== */
+
+    function closeInfoBackground(event) {
+
+      if (
+        event.target.id === "infoPanel"
+      ) {
+
+        closeInfo();
+
+      }
+
+    }
+
+
+
+    /* ========================================
+       ESC KEY
+    ======================================== */
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Escape") {
+
+          closeProject();
+
+          closeInfo();
+
+        }
+
+      }
+    );
+
+  </script>
+
 </body>
 </html>
